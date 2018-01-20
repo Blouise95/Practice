@@ -1,0 +1,35 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+
+namespace _29.SizeOfAFile
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine(@"Please enter a file destination in 'C:\Users\name\Documents\file.txt' format");
+            string input = @Console.ReadLine();
+
+            if (File.Exists(input))
+            {
+                Console.WriteLine("The contents of this file are: " + File.ReadAllText(input));
+                FileInfo f = new FileInfo(input);
+                Console.WriteLine("The size of the file is: " + f.Length + " bytes.");
+                Console.WriteLine("If you would like to add anything to the file, please type it here.");
+                File.AppendAllText(input, Console.ReadLine());
+                Console.WriteLine("The file now reads " + File.ReadAllText(input));
+            }
+            else
+            {
+                Console.WriteLine("This file does not exist, please check your destination path.");
+            }
+
+
+            Console.ReadKey();
+        }
+    }
+}
